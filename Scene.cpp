@@ -1,45 +1,14 @@
 #include "Scene.h"
-#include "SceneLib.h"
+//#include "SceneLib.h"
 
-Scene::Scene()
+Scene::Scene(const uint16_t (*idle)[57600], const uint16_t (*action)[57600], const uint16_t (*menuSprite)[9600])
 {
-  idle = idle0;
-  action = action0;
+  idleBitmap = idle;
+  actionBitmap = action;
   menu = menuSprite;
 
   currScene = 0;
   currOption = 0;
 }
 
-bool Scene::updateScene(uint8_t id)
-{
-  switch(id)
-  {
-    case 0:
-      if(id == currScene){break;}
-      idle = idle0;
-      action = action0;
-      return true;
-    default:
-      return false;
-  }
-  return false;
-}
-
-bool Scene::updateOption(uint8_t dir)
-{
-  switch (dir)
-  {
-    case 0:
-      if(currOption == 0){currOption = 5;}
-      else {currOption--;}
-      return true;
-    case 1:
-      if(currOption == 5){currOption = 0;}
-      else {currOption++;}
-      return true;
-  }
-
-  return false;
-}
 
